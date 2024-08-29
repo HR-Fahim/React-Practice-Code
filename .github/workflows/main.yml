@@ -48,6 +48,10 @@ jobs:
       - name: Display Full Ngrok Output for Debugging
         run: cat ngrok-output.txt
 
-      - name: Run npm run dev with host
+      - name: Run npm run dev with host and set timeout
         working-directory: react-app
-        run: npm run dev -- --host
+        run: |
+          timeout 600 npm run dev -- --host &
+          sleep 600 # Sleep for 10 minutes (600 seconds)
+          echo "Stopping workflow after 10 minutes"
+          exit 0

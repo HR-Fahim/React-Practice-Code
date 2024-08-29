@@ -30,20 +30,23 @@ jobs:
         run: npm install
 
       - name: Start Ngrok and expose port 5173
-        run: ngrok http 5173 | tee ngrok-output.txt &
+        run: ngrok http 5173 --log=stdout > ngrok-output.txt 2>&1 &
 
       - name: Wait for Ngrok to initialize
         run: sleep 10 # Adjust sleep time if necessary
 
-      - name: Display Ngrok public URL
+      - name: Check Ngrok Output and Display Public URL
         run: |
-          if grep -q "http" ngrok-output.txt; then
-            grep "http" ngrok-output.txt
+          if grep -q "https://.*ngrok.io" ngrok-output.txt; then
+            grep "https://.*ngrok.io" ngrok-output.txt
           else
             echo "Error: Ngrok did not start correctly or did not output a public URL."
             cat ngrok-output.txt
             exit 1
           fi
+
+      - name: Display Full Ngrok Output for Debugging
+        run: cat ngrok-output.txt
 
       - name: Run npm run dev with host
         working-directory: react-app

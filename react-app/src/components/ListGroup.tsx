@@ -12,7 +12,12 @@ function ListGroup() {
         <li className="list-group-item">Item 4</li>
         <li className="list-group-item">Item 5</li> */}
         {items.map((item) => (
-          <li className="list-group-item">{item}</li>
+          <li
+            className="list-group-item"
+            key={item /* unique key & in real world used id such as item.id*/}
+          >
+            {item}
+          </li>
         ))}
       </ul>
     </Fragment>

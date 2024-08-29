@@ -50,4 +50,4 @@ jobs:
 
       - name: Run npm run dev with host
         working-directory: react-app
-        run: npm run dev -- --host
+        run: npm run dev -- --host 0.0.0.0 # Ensure binding to all network interfaces for compatibility

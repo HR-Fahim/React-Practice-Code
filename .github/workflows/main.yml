@@ -37,8 +37,8 @@ jobs:
 
       - name: Check Ngrok Output and Display Public URL
         run: |
-          if grep -q "https://.*ngrok.io" ngrok-output.txt; then
-            grep "https://.*ngrok.io" ngrok-output.txt
+          if grep -q "https://.*ngrok-free.app" ngrok-output.txt; then
+            grep "https://.*ngrok-free.app" ngrok-output.txt
           else
             echo "Error: Ngrok did not start correctly or did not output a public URL."
             cat ngrok-output.txt

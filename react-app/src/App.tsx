@@ -1,19 +1,25 @@
-import ListGroup from "./components/ListGroup";
+import Alert from "./components/Alert";
 
 function App() {
   //JSX: JavaScript XML
-  const items = ["New York", "San Francisco", "Los Angeles"];
-  let handleSelectItem = (item: string) => {
-    console.log(item);
-  };
+  // const items = ["New York", "San Francisco", "Los Angeles"];
+  // let handleSelectItem = (item: string) => {
+  //   console.log(item);
+  // };
 
   return (
+    // <div>
+    //   <ListGroup
+    //     items={items}
+    //     heading={"Cities"}
+    //     onSelectItem={handleSelectItem}
+    //   />
+    // </div>
+
     <div>
-      <ListGroup
-        items={items}
-        heading={"Cities"}
-        onSelectItem={handleSelectItem}
-      />
+      <Alert>
+        <span>Hello World!</span>
+      </Alert>
     </div>
   );
 }

@@ -15,9 +15,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20.16.0"
-      - name: Change directory to your project (if applicable)
-        run: cd react-app/ # Update this if your package.json is in a subdirectory
-      - name: Install dependencies
+      - name: Change directory to react-app
+        working-directory: react-app
         run: npm install
       - name: Run npm run dev
+        working-directory: react-app
         run: npm run dev

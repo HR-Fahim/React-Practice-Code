@@ -1,4 +1,4 @@
-import Alert from "./components/Alert";
+import Button from "./components/Button";
 
 function App() {
   //JSX: JavaScript XML
@@ -16,10 +16,16 @@ function App() {
     //   />
     // </div>
 
+    // <div>
+    //   <Alert>
+    //     <span>Hello World!</span>
+    //   </Alert>
+    // </div>
+
     <div>
-      <Alert>
-        <span>Hello World!</span>
-      </Alert>
+      <Button color="danger" onClick={() => console.log("clicked")}>
+        Click Me
+      </Button>
     </div>
   );
 }

@@ -1,3 +1,3 @@
 ## About
 
-React and Typescript practice code, also implemented over CI/CD pipelines.
+React and Typescript practice codes; also implemented over CI/CD pipelines.

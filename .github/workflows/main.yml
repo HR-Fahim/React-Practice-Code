@@ -3,7 +3,7 @@ name: Run npm run dev
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   run-dev:

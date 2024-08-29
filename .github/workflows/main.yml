@@ -15,9 +15,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20.16.0"
+      - name: Install Ngrok
+        run: sudo npm install -g ngrok
       - name: Change directory to react-app
         working-directory: react-app
         run: npm install
-      - name: Run npm run dev
+      - name: Start Ngrok
+        run: ngrok http 5173 &
+      - name: Run npm run dev with host
         working-directory: react-app
-        run: npm run dev
+        run: npm run dev -- --host

@@ -14,7 +14,7 @@ function ListGroup() {
         {items.map((item) => (
           <li
             className="list-group-item"
-            key={item /* unique key & in real world used id such as item.id*/}
+            key={item /* unique key & in real world use id such as item.id*/}
           >
             {item}
           </li>

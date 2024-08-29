@@ -11,21 +11,40 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
+
       - name: Install Ngrok
         run: sudo npm install -g ngrok
+
       - name: Authenticate Ngrok
-        run: ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+        env:
+          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+        run: ngrok authtoken $NGROK_AUTH_TOKEN
+
       - name: Change directory to react-app
         working-directory: react-app
         run: npm install
+
       - name: Start Ngrok and expose port 5173
-        run: ngrok http 5173 > ngrok-output.txt &
+        run: ngrok http 5173 | tee ngrok-output.txt &
+
+      - name: Wait for Ngrok to initialize
+        run: sleep 10 # Adjust sleep time if necessary
+
       - name: Display Ngrok public URL
-        run: cat ngrok-output.txt | grep "http"
+        run: |
+          if grep -q "http" ngrok-output.txt; then
+            grep "http" ngrok-output.txt
+          else
+            echo "Error: Ngrok did not start correctly or did not output a public URL."
+            cat ngrok-output.txt
+            exit 1
+          fi
+
       - name: Run npm run dev with host
         working-directory: react-app
         run: npm run dev -- --host

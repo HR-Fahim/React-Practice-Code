@@ -10,11 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # Updated to the latest version
+        uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20.16.0" # Ensure the latest Node.js version is used
+          node-version: "20.16.0"
+      - name: Change directory to your project (if applicable)
+        run: cd react-app/package.json # Update this if your package.json is in a subdirectory
       - name: Install dependencies
         run: npm install
       - name: Run npm run dev

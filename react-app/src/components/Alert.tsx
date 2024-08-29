@@ -19,4 +19,5 @@ function Alert({ children, onClose }: AlertProps) {
     </div>
   );
 }
+
 export default Alert;

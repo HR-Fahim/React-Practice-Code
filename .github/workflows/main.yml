@@ -29,16 +29,16 @@ jobs:
         working-directory: react-app
         run: npm install
 
-      - name: Start Ngrok with Reserved Subdomain
-        run: ngrok http -subdomain=fair-lion-supposedly 5173 --log=stdout > ngrok-output.txt 2>&1 &
+      - name: Start Ngrok and expose port 5173
+        run: ngrok http 5173 --log=stdout > ngrok-output.txt 2>&1 &
 
       - name: Wait for Ngrok to initialize
         run: sleep 10 # Adjust sleep time if necessary
 
       - name: Check Ngrok Output and Display Public URL
         run: |
-          if grep -q "https://fair-lion-supposedly.ngrok-free.app" ngrok-output.txt; then
-            grep "https://fair-lion-supposedly.ngrok-free.app" ngrok-output.txt
+          if grep -q "https://.*ngrok-free.app" ngrok-output.txt; then
+            grep "https://.*ngrok-free.app" ngrok-output.txt
           else
             echo "Error: Ngrok did not start correctly or did not output a public URL."
             cat ngrok-output.txt

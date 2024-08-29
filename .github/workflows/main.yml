@@ -1,0 +1,30 @@
+name: Run npm run dev
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install Ngrok
+        run: sudo npm install -g ngrok
+      - name: Change directory to react-app
+        working-directory: react-app
+        run: npm install
+      - name: Start Ngrok and expose port 5173
+        run: |
+          ngrok http 5173 > ngrok-output.txt &
+          sleep 5 # Give Ngrok some time to start
+          cat ngrok-output.txt
+      - name: Run npm run dev with host
+        working-directory: react-app
+        run: npm run dev -- --host
